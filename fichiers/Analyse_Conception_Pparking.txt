@@ -27,7 +27,8 @@ Analyse :
 		}
 		- ExitVehicule : {
 			- Console.Clear();
-			- Demander à l'utilisateur un plaque d'immatriculation ou une place existante. Autrement Apppeler "ShowError".
+			- Demander à l'utilisateur un plaque d'immatriculation ou une place existante.
+			- Appeler "⚠CheckExistantPlate⚠", si retourn true continuer, sinon appeler "ShowError".
 			- Appeler "ShowTicket".
 			- Afficher l'heure de sortie (donc l'heure actuelle).
 			- Appeler "CalculatePrice" et afficher le montant.
@@ -40,7 +41,8 @@ Analyse :
 		}
 		- ShowStats : Uniquement affichage de toutes les informations du parking (etat du parking, plan du parking, véhicules présents, Menu Principal) en utilisant un console.clear(); et réécriture du totale.
 		- SearchVehicule : {
-			- Demander à l'utilisateur un plaque d'immatriculation ou une place existante. Autrement Apppeler "ShowError".
+			- Demander à l'utilisateur un plaque d'immatriculation ou une place existante.
+			- Appeler "⚠CheckExistantPlate⚠", si retourn true continuer, sinon appeler "ShowError".
 			- Appeler "ShowStats".
 			- Attendre que l'utilisateur appuie sur "Enter".
 		}
@@ -52,10 +54,11 @@ Analyse :
 				- Non : Afficher le choix de l'utilisateur puis attendre qu'il appuie sur "Enter".
 			}
 		}
-		- ShowError : ⚠️SE REFERER AU "BoucleErreurSchema" DANS LE DOSSIER "Schema"⚠️ Selon le chiffre donné, gère avec un switch toutes les erreurs possible, attends que l'utilisateur appuie sur "Enter".
+		- ShowError : Selon le chiffre donné, gère avec un switch toutes les erreurs possible, attends que l'utilisateur appuie sur "Enter".
 		- ShowTicket : Affiche toutes les informatioms utiles à savoir sur le ticket (Heure d'entrée, prix, place, voiture liée), (pour récupérer l'heure actuelle utiliser "string datetime = DateTime.Now.ToString("hh:mm:ss tt")").
 		- CheckLicensePlate : Vérifie si la plaque d'immatriculation est valide (pour vérifier faire un foreach sur l'entrée du joueur qui sera en string, puis vérifier si c'est égale à n'importe quel chiffre, si ce n'est pas un chiffre, l'ajouter dans un tableau "lettre" puis compter);
 		- CalculatePrice : Calcule le montant totale avec la durée et le prix du ticket. Retourne uniquement le montant.
+		- CheckExistantPlate : ⚠️SE REFERER AU "BoucleErreurSchema" DANS LE DOSSIER "Schema" POUR SON UTILISATION⚠️Vérifie si la plaque d'immatriculation existe bien dans le parking.
 	}
 	Classes {
 		- Parking : Toutes les informations concerant le parking, avec un tableau avec toutes les places de park du parking, une liste de tout les véhicule qui sont venu et une list de tout les tickets. Toutes les donctions tournes là dedans.
