@@ -1,0 +1,4 @@
+à faire :
+- Remplir le JDT dès qu'un tâche concrète est terminée.
+- Mettre à jour la planification quand une carte est finie.
+- Chaque choses spécifiques dans le code doit être commentée.
