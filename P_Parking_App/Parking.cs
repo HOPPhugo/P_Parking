@@ -17,18 +17,36 @@ namespace P_Parking_App
             parkingPlace = new Place[nbrPlace];
             car = new List<Voiture>();
             ticket = new List<Ticket>();
-            InitializePlace();
         }
         public void ShowTable()
         {
             Console.WriteLine("Table\n");
-        }    
-        private void InitializePlace()
+        }
+        public bool EnterVehicule(String licensePLate)
         {
-            for (int i = 0;  i < parkingPlace.Length; i++)
+            car.Add(new Voiture(licensePLate));
+            for (int i  = 0; i < parkingPlace.Length; i++)
             {
-                parkingPlace[i] = new Place(i);
+                    if (parkingPlace[i] ==  null)
+                    {
+                        parkingPlace[i] = new Place(car[car.Count - 1]);
+                        return true;
+                    }
             }
+                return false;
+            
+        }
+        private int CountOccupedPlace()
+        {
+            int count = 0;
+            foreach (Place place in parkingPlace)
+                {
+                    if (place != null)
+                    {
+                        count++;
+                    }
+                }
+            return count;
         }
         public void ShowCar()
         {
@@ -39,10 +57,10 @@ namespace P_Parking_App
         {
             Console.Clear();
             Console.WriteLine($@"=== ÉTAT DU PARKING ===
-Places totales : {empty}
-Places occupées : {empty}
-Places libres : {empty}
-Taux d'occupation : {empty}
+Places totales : {this.parkingPlace.Count().ToString()}
+Places occupées : {CountOccupedPlace()}
+Places libres : {parkingPlace.Length - CountOccupedPlace()}
+Taux d'occupation : {CountOccupedPlace() * 5}%
 ");
 
             Console.WriteLine($"Plan du parking (L=libre, X=Occupé) :");
