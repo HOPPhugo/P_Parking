@@ -21,7 +21,7 @@ Analyse :
 			- Console.Clear();
 			- Demander l'utilisateur d'entrer un plaque d'immatriculation valide.
 			- Appeler "CheckLicensePlate".
-			- Si "CheckLicensePlate" retourn "true", crée un nouveau objet "Voiture". Autrement, appeler "ShowError".
+			- Si "CheckLicensePlate" retourn true, crée un nouveau objet "Voiture". Autrement, appeler "ShowError".
 			- Créer un objet "Ticket".
 			- Attendre que l'utilisateur appuie sur "Enter".
 		}
