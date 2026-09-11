@@ -1,0 +1,15 @@
+D:\P_parking\P_Parking_App\bin\Debug\net8.0\P_Parking_App.exe
+D:\P_parking\P_Parking_App\bin\Debug\net8.0\P_Parking_App.deps.json
+D:\P_parking\P_Parking_App\bin\Debug\net8.0\P_Parking_App.runtimeconfig.json
+D:\P_parking\P_Parking_App\bin\Debug\net8.0\P_Parking_App.dll
+D:\P_parking\P_Parking_App\bin\Debug\net8.0\P_Parking_App.pdb
+D:\P_parking\P_Parking_App\obj\Debug\net8.0\P_Parking_App.GeneratedMSBuildEditorConfig.editorconfig
+D:\P_parking\P_Parking_App\obj\Debug\net8.0\P_Parking_App.AssemblyInfoInputs.cache
+D:\P_parking\P_Parking_App\obj\Debug\net8.0\P_Parking_App.AssemblyInfo.cs
+D:\P_parking\P_Parking_App\obj\Debug\net8.0\P_Parking_App.csproj.CoreCompileInputs.cache
+D:\P_parking\P_Parking_App\obj\Debug\net8.0\P_Parking_App.sourcelink.json
+D:\P_parking\P_Parking_App\obj\Debug\net8.0\P_Parking_App.dll
+D:\P_parking\P_Parking_App\obj\Debug\net8.0\refint\P_Parking_App.dll
+D:\P_parking\P_Parking_App\obj\Debug\net8.0\P_Parking_App.pdb
+D:\P_parking\P_Parking_App\obj\Debug\net8.0\P_Parking_App.genruntimeconfig.cache
+D:\P_parking\P_Parking_App\obj\Debug\net8.0\ref\P_Parking_App.dll
