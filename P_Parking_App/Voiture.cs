@@ -8,11 +8,11 @@ namespace P_Parking_App
 {
     internal class Voiture
     {
-        public string licensePlate { get; set; }
-        public bool is_ActuallyInThePark { get; set; }
+        public string LicensePlate { get; set; }
+        public bool IsActuallyInThePark { get; set; }
         public Voiture(string _licensePlate) { 
-            licensePlate = _licensePlate;
-            is_ActuallyInThePark = true;
+            LicensePlate = _licensePlate;
+            IsActuallyInThePark = true;
         }
     }
 }
