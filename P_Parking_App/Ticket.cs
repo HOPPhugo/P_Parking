@@ -14,22 +14,33 @@ namespace P_Parking_App
         public DateTime EntryHour {get; set;}
         public int PlaceNumber { get; set; }
 
-        public Ticket(Voiture _LinkedCar, int _PlaceNumber) { 
+        public Ticket(Voiture linkedCar, int placeNumber) {
+            Price = 0;
             EntryHour = DateTime.Now;
-            LinkedCar = _LinkedCar;
-            PlaceNumber = _PlaceNumber;
-            ShowInfo();
+            LinkedCar = linkedCar;
+            PlaceNumber = placeNumber;
+            Console.WriteLine(this.ToString());
         }
-        private void ShowInfo()
+        public double CalculatePrice()
         {
-            Console.WriteLine($@"Heure d'entrée    : {EntryHour}
+            Price = (DateTime.Now.CompareTo(EntryHour))*RATE;
+            return Price;
+        }
+        public override string ToString()
+        {
+            if (Price == 0)
+            {
+                return $@"Heure d'entrée    : {EntryHour}
 Place du vehicule : N°{PlaceNumber}
-Tarif horaire     : {RATE}.-/h");
-        }
-        public double calculatePrice()
-        {
-            Price = (EntryHour.CompareTo(DateTime.Now))*RATE;
-            return 0;
+Tarif horaire     : {RATE}.-/h";
+            }
+            else
+            {
+                return $@"Heure d'entrée    : {EntryHour}
+Place du vehicule : N°{PlaceNumber}
+Tarif horaire     : {RATE}.-/h
+Prix du ticket : {Price}";
+            }
         }
     }
 }

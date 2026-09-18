@@ -27,10 +27,82 @@ namespace P_Parking_App
         {
             switch (messageId)
             {
-                case 0 : Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine($"La voiture avec la plaque : << {this.CarList[this.CarList.Count() - 1].LicensePlate} >> à bien été ajoutée !"); break;
-                case 1 : Console.ForegroundColor = ConsoleColor.Red;  Console.WriteLine("La voiture n'as pas pu être ajoutée pour cause de manque de place."); break;
-                case 2 : Console.ForegroundColor = ConsoleColor.Red;  Console.WriteLine("La norme pour la plaque n'as pas été respectée ! Exemple : VD-274891"); break;
+                case 0: Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine($"La voiture avec la plaque : << {this.CarList[this.CarList.Count() - 1].LicensePlate} >> à bien été ajoutée !"); break;
+                case 1: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("La voiture n'as pas pu être ajoutée pour cause de manque de place."); break;
+                case 2: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("La norme pour la plaque n'as pas été respectée ! Exemple : VD-274891"); break;
                 case 3: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine($"Une voiture ayant la plaque : <<{this.CarList[this.CarList.Count() - 1].LicensePlate}>> existe déjà dans le parking"); break;
+                case 4: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("La voiture mensionée n'est pas dans le parking."); break;
+                case 5: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Cet place est actuellement libre"); break;
+            }
+        }
+        public void ExitVehicule(string _vehiculeInfo)
+        {
+            bool vehiculeFound = false;
+            bool place = false;
+            if (_vehiculeInfo.Length > 2)
+            { 
+                for (int i = 0; i < ParkingPlace.Length; i++)
+                {
+                    if (ParkingPlace[i] != null && ParkingPlace[i].ActualCar.LicensePlate == _vehiculeInfo)
+                    {
+                        Voiture _thisCar = ParkingPlace[i].ActualCar;
+                        foreach (Ticket t in TicketList)
+                        {
+                            if (t.LinkedCar == _thisCar)
+                            {
+                                vehiculeFound = true;
+                                ExitChoice( _thisCar, t, i);
+                            }
+
+                        }
+                    }
+                }
+            }
+            else
+            { 
+                place = true;
+                if (this.ParkingPlace[int.Parse(_vehiculeInfo)] != null)
+                {
+                    for (int i = 0; i < TicketList.Count(); i++)
+                    {
+                        if (TicketList[i].PlaceNumber == int.Parse(_vehiculeInfo))
+                        {
+                            vehiculeFound = true;
+                            ExitChoice(TicketList[i].LinkedCar, TicketList[i], i);
+                        }
+                    }
+                }
+            }
+            
+
+            if (!vehiculeFound)
+            {
+                if (place)
+                {
+                    this.ShowMessage(5);
+                }
+                else
+                {
+                    this.ShowMessage(4);
+                }
+            }
+        }
+        private void ExitChoice( Voiture _thisCar, Ticket t, int i)
+        {
+            t.CalculatePrice();
+            Console.WriteLine(t.ToString());
+
+            Console.Write("Voulez-vous vraiment faire sortir cette voiture ? (o/n) : ");
+            if (Console.ReadLine() == "o")
+            {
+                _thisCar.IsActuallyInThePark = false;
+                ParkingPlace[i] = null;
+                Console.WriteLine($"La place de parque N°{i} à été libérée.");
+            }
+            else
+            {
+                t.Price = 0;
+                Console.WriteLine($"la place de parque N°{i} est toujours occupée.");
             }
         }
         public void EnterVehicule(String licensePLate)
@@ -80,15 +152,15 @@ namespace P_Parking_App
             foreach (char c in licensePLate)
             {
                 _numberOfIteration++;
-                if (char.IsDigit(c) && _numberOfIteration >= 4 && _numberOfIteration <= 6)
+                if (char.IsDigit(c) && _numberOfIteration >= 4 && _numberOfIteration <= 11)
                 {
                     _nbrDigit++;
                 }
-                else if (c == '-' && _numberOfIteration == 3)
+                if (c == '-' && _numberOfIteration == 3)
                 {
                     _IsUnion = true;
                 }
-                else if (char.IsLetter(c) && (_numberOfIteration == 1 || _numberOfIteration == 2))
+                if (char.IsLetter(c) && (_numberOfIteration == 1 || _numberOfIteration == 2))
                 {
                     _nbrLettre++;
                 }
@@ -97,7 +169,7 @@ namespace P_Parking_App
                 {
                     foreach (Voiture v in CarList)
                     {
-                        if (v.LicensePlate == licensePLate)
+                        if (v.LicensePlate == licensePLate && v.IsActuallyInThePark)
                         {
                             return 2;
                         }
