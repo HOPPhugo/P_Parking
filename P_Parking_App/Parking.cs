@@ -14,14 +14,50 @@ namespace P_Parking_App
         public Place[] ParkingPlace { get; set; }
         public List<Voiture> CarList { get; set; }
         public List<Ticket> TicketList { get; set; }
-        public Parking(int _nbrPlace) { 
-            ParkingPlace = new Place[_nbrPlace];
+        public Parking(int nbrPlace) { 
+            ParkingPlace = new Place[nbrPlace];
             CarList = new List<Voiture>();
             TicketList = new List<Ticket>();
         }
         public void ShowTable()
         {
-            Console.WriteLine("Table\n");
+            int actualCase = 0;
+            Console.WriteLine(@"
+X = Occupé
+L = Libre
+            ");
+            Console.WriteLine("Plan du parking : \n╔═════════╦═════════╦═════════╦═════════╦═════════╗");
+            for (int i = 0;i < 4; i++)
+            {
+                Console.Write("║");
+                for(int j = 0; j < 5;j++)
+                {
+                    if (this.ParkingPlace[actualCase] != null)
+                    {
+                        if (actualCase <= 8){
+                        Console.Write($" N°{actualCase+1}   X ║");}
+                        else
+                        {
+                            Console.Write($" N°{actualCase+1}  X ║");
+                        }
+                    }
+                    else
+                    {
+                        if (actualCase <= 8){
+                        Console.Write($" N°{actualCase+1}   L ║");}
+                        else
+                        {
+                            Console.Write($" N°{actualCase+1}  L ║");
+                        }
+                    }
+                    actualCase++;
+                }
+                Console.WriteLine();
+                if (i < 3){
+                    Console.WriteLine("╠═════════╬═════════╬═════════╬═════════╬═════════╣");
+                }
+            }
+            Console.WriteLine("╚═════════╩═════════╩═════════╩═════════╩═════════╝");
         }
         private void ShowMessage(int messageId)
         {
@@ -35,23 +71,23 @@ namespace P_Parking_App
                 case 5: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Cet place est actuellement libre"); break;
             }
         }
-        public void ExitVehicule(string _vehiculeInfo)
+        public void ExitVehicule(string vehiculeInfo)
         {
             bool vehiculeFound = false;
             bool place = false;
-            if (_vehiculeInfo.Length > 2)
+            if (vehiculeInfo.Length > 2)
             { 
                 for (int i = 0; i < ParkingPlace.Length; i++)
                 {
-                    if (ParkingPlace[i] != null && ParkingPlace[i].ActualCar.LicensePlate == _vehiculeInfo)
+                    if (ParkingPlace[i] != null && ParkingPlace[i].ActualCar.LicensePlate == vehiculeInfo)
                     {
-                        Voiture _thisCar = ParkingPlace[i].ActualCar;
+                        Voiture thisCar = ParkingPlace[i].ActualCar;
                         foreach (Ticket t in TicketList)
                         {
-                            if (t.LinkedCar == _thisCar)
+                            if (t.LinkedCar == thisCar)
                             {
                                 vehiculeFound = true;
-                                ExitChoice( _thisCar, t, i);
+                                ExitChoice( thisCar, t, i);
                             }
 
                         }
@@ -61,11 +97,11 @@ namespace P_Parking_App
             else
             { 
                 place = true;
-                if (this.ParkingPlace[int.Parse(_vehiculeInfo)] != null)
+                if (this.ParkingPlace[int.Parse(vehiculeInfo)] != null)
                 {
                     for (int i = 0; i < TicketList.Count(); i++)
                     {
-                        if (TicketList[i].PlaceNumber == int.Parse(_vehiculeInfo))
+                        if (TicketList[i].PlaceNumber == int.Parse(vehiculeInfo))
                         {
                             vehiculeFound = true;
                             ExitChoice(TicketList[i].LinkedCar, TicketList[i], i);
@@ -87,7 +123,7 @@ namespace P_Parking_App
                 }
             }
         }
-        private void ExitChoice( Voiture _thisCar, Ticket t, int i)
+        private void ExitChoice( Voiture thisCar, Ticket t, int i)
         {
             t.CalculatePrice();
             Console.WriteLine(t.ToString());
@@ -95,7 +131,7 @@ namespace P_Parking_App
             Console.Write("Voulez-vous vraiment faire sortir cette voiture ? (o/n) : ");
             if (Console.ReadLine() == "o")
             {
-                _thisCar.IsActuallyInThePark = false;
+                thisCar.IsActuallyInThePark = false;
                 ParkingPlace[i] = null;
                 Console.WriteLine($"La place de parque N°{i} à été libérée.");
             }
@@ -108,8 +144,8 @@ namespace P_Parking_App
         public void EnterVehicule(String licensePLate)
         {
             bool isCheckGood = false;
-            int _LicenseCheck = CheckLicensePlate(licensePLate);
-            if (_LicenseCheck == 1)
+            int licenseCheck = CheckLicensePlate(licensePLate);
+            if (licenseCheck == 1)
             {
                 
                 for (int i  = 0; i < ParkingPlace.Length; i++)
@@ -132,7 +168,7 @@ namespace P_Parking_App
             }
             if (!isCheckGood){
                     isCheckGood = true;
-                if (_LicenseCheck == 0){
+                if (licenseCheck == 0){
                     ShowMessage(2);
                 }
                 else
@@ -143,29 +179,29 @@ namespace P_Parking_App
         }
         private int CheckLicensePlate(string licensePLate)
         {
-            int _nbrLettre =0;
-            int _nbrDigit = 0;
-            bool _IsUnion = false;
-            int _licensePlateLenght = 0;
+            int nbrLettre =0;
+            int nbrDigit = 0;
+            bool isUnion = false;
+            int licensePlateLenght = 0;
             licensePLate = licensePLate.ToLower();
-            int _numberOfIteration=0;
+            int numberOfIteration=0;
             foreach (char c in licensePLate)
             {
-                _numberOfIteration++;
-                if (char.IsDigit(c) && _numberOfIteration >= 4 && _numberOfIteration <= 11)
+                numberOfIteration++;
+                if (char.IsDigit(c) && numberOfIteration >= 4 && numberOfIteration <= 11)
                 {
-                    _nbrDigit++;
+                    nbrDigit++;
                 }
-                if (c == '-' && _numberOfIteration == 3)
+                if (c == '-' && numberOfIteration == 3)
                 {
-                    _IsUnion = true;
+                    isUnion = true;
                 }
-                if (char.IsLetter(c) && (_numberOfIteration == 1 || _numberOfIteration == 2))
+                if (char.IsLetter(c) && (numberOfIteration == 1 || numberOfIteration == 2))
                 {
-                    _nbrLettre++;
+                    nbrLettre++;
                 }
-                _licensePlateLenght++;
-                if (_nbrLettre == 2 && _nbrDigit == 6 && _IsUnion == true && _licensePlateLenght == licensePLate.Length)
+                licensePlateLenght++;
+                if (nbrLettre == 2 && nbrDigit == 6 && isUnion == true && licensePlateLenght == licensePLate.Length)
                 {
                     foreach (Voiture v in CarList)
                     {

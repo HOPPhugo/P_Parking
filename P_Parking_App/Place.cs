@@ -10,8 +10,8 @@ namespace P_Parking_App
     {
         public Voiture ActualCar { get; set; }
         //variable qui stock la voiture qu'il occupe
-        public Place(Voiture _actualCar) {
-            this.ActualCar = _actualCar;
+        public Place(Voiture actualCar) {
+            this.ActualCar = actualCar;
         }
     }
 }

@@ -20,7 +20,7 @@ while (true)
         case "1": Console.Clear(); parking1.EnterVehicule(Console.ReadLine()); Console.ReadLine();
                 break; 
         case "2": Console.Clear(); parking1.ExitVehicule(Console.ReadLine()); Console.ReadLine(); break;
-        case "3": parking1.ShowStats(); break; 
+        case "3": Console.Clear(); parking1.ShowTable(); Console.ReadLine(); break; 
         case "4": break; //Appeler SearchVehicule
         case "5": break; //Appeler DayStatistics
         case "6": break; //Appeler TransactionsHistory

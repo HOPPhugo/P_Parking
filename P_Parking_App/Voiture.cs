@@ -10,8 +10,8 @@ namespace P_Parking_App
     {
         public string LicensePlate { get; set; }
         public bool IsActuallyInThePark { get; set; }
-        public Voiture(string _licensePlate) { 
-            LicensePlate = _licensePlate;
+        public Voiture(string licensePlate) { 
+            LicensePlate = licensePlate;
             IsActuallyInThePark = true;
         }
     }
