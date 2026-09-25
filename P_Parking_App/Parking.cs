@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -180,6 +181,24 @@ L = Libre
                     this.ShowMessage(4);
                 }
             }
+        }
+        public void CloseApp()
+        {
+            Console.Clear();
+            Console.Write("Êtes vous sûr de vouloir fermet l'application ? (o,n) : ");
+            string userEntry = Console.ReadLine();
+
+            if (userEntry != null)
+            {
+                if (userEntry == "o")
+                {
+                    Environment.Exit(0);
+                }
+            }
+
+            Console.ReadKey();
+
+
         }
         private void ExitChoice( Voiture thisCar, Ticket t, int i)
         {

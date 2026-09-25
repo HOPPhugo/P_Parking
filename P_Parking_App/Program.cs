@@ -24,6 +24,6 @@ while (true)
         case "4": Console.Clear(); parking1.SearchVehicule(Console.ReadLine()); Console.ReadLine(); break; 
         case "5": break; //Appeler DayStatistics
         case "6": break; //Appeler TransactionsHistory
-        default : break; //Appeler CloseApp
+        default : parking1.CloseApp(); break;
     }
 }
