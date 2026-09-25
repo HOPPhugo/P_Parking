@@ -21,7 +21,7 @@ while (true)
                 break; 
         case "2": Console.Clear(); parking1.ExitVehicule(Console.ReadLine()); Console.ReadLine(); break;
         case "3": Console.Clear(); parking1.ShowTable(); Console.ReadLine(); break; 
-        case "4": break; //Appeler SearchVehicule
+        case "4": Console.Clear(); parking1.SearchVehicule(Console.ReadLine()); Console.ReadLine(); break; 
         case "5": break; //Appeler DayStatistics
         case "6": break; //Appeler TransactionsHistory
         default : break; //Appeler CloseApp

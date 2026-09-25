@@ -31,13 +31,13 @@ namespace P_Parking_App
             if (Price == 0)
             {
                 return $@"Heure d'entrée    : {EntryHour}
-Place du vehicule : N°{PlaceNumber}
+Place du vehicule : N°{PlaceNumber+1}
 Tarif horaire     : {RATE}.-/h";
             }
             else
             {
                 return $@"Heure d'entrée    : {EntryHour}
-Place du vehicule : N°{PlaceNumber}
+Place du vehicule : N°{PlaceNumber+1}
 Tarif horaire     : {RATE}.-/h
 Prix du ticket : {Price}";
             }

@@ -10,7 +10,6 @@ namespace P_Parking_App
 {
     internal class Parking
     {
-        int empty = 0;
         public Place[] ParkingPlace { get; set; }
         public List<Voiture> CarList { get; set; }
         public List<Ticket> TicketList { get; set; }
@@ -69,6 +68,61 @@ L = Libre
                 case 3: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine($"Une voiture ayant la plaque : <<{this.CarList[this.CarList.Count() - 1].LicensePlate}>> existe déjà dans le parking"); break;
                 case 4: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("La voiture mensionée n'est pas dans le parking."); break;
                 case 5: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Cet place est actuellement libre"); break;
+                case 6: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Cet place ne fait pas parti du Parking."); break;
+            }
+        }
+        public void SearchVehicule(string vehiculeInfo)
+        {
+            bool vehiculeFound = false;
+            bool place = false;
+            Console.Clear();
+            if (vehiculeInfo.Length > 2)
+            {
+                for (int i = 0; i < ParkingPlace.Length; i++)
+                {
+                    if (ParkingPlace[i] != null && ParkingPlace[i].ActualCar.LicensePlate == vehiculeInfo)
+                    {
+                        Voiture thisCar = ParkingPlace[i].ActualCar;
+                        foreach (Ticket t in TicketList)
+                        {
+                            if (t.LinkedCar == thisCar)
+                            {
+                                vehiculeFound = true;
+                                Console.WriteLine($"{t.ToString()} \nPlaque d'immatriculation : <<{thisCar.LicensePlate}>>");
+                            }
+
+                        }
+                    }
+                }
+            }
+            else
+            {
+                place = true;
+                if (this.ParkingPlace[int.Parse(vehiculeInfo)] != null)
+                {
+                    for (int i = 0; i < TicketList.Count(); i++)
+                    {
+                        if (TicketList[i].PlaceNumber == int.Parse(vehiculeInfo) && TicketList[i].Price == 0)
+                        {
+                            vehiculeFound = true;
+                            Console.WriteLine(TicketList[i].ToString());
+                            Console.WriteLine($"Plaque d'immatriculation : <<{TicketList[i].LinkedCar.LicensePlate}>>");
+                        }
+                    }
+                }
+            }
+
+
+            if (!vehiculeFound)
+            {
+                if (place)
+                {
+                    this.ShowMessage(5);
+                }
+                else
+                {
+                    this.ShowMessage(4);
+                }
             }
         }
         public void ExitVehicule(string vehiculeInfo)
@@ -97,7 +151,7 @@ L = Libre
             else
             { 
                 place = true;
-                if (this.ParkingPlace[int.Parse(vehiculeInfo)] != null)
+                if ( int.IsPositive(int.Parse(vehiculeInfo)) && this.ParkingPlace[int.Parse(vehiculeInfo)] != null)
                 {
                     for (int i = 0; i < TicketList.Count(); i++)
                     {
@@ -113,7 +167,11 @@ L = Libre
 
             if (!vehiculeFound)
             {
-                if (place)
+                if (!int.IsPositive(int.Parse(vehiculeInfo)))
+                {
+                    this.ShowMessage(6);
+                }
+                else if (place)
                 {
                     this.ShowMessage(5);
                 }
