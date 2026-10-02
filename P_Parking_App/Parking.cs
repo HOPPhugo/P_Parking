@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,6 +59,26 @@ L = Libre
                 }
             }
             Console.WriteLine("╚═════════╩═════════╩═════════╩═════════╩═════════╝");
+
+            Console.WriteLine("\n\nVéhicules présents : ");
+            for (int i =0;i < ParkingPlace.Length; i++)
+            {
+                if (ParkingPlace[i] != null)
+                {
+                    TimeSpan difference = DateTime.Now - DateTime.Now;
+                    foreach (Ticket t in TicketList)
+                    {
+                        if (t.LinkedCar == ParkingPlace[i].ActualCar && t.Price == 0)
+                        {
+                            difference = t.GetElapsedTime();
+                        }
+                    }
+                    string secondes = string.Format("{0:00}", difference.Seconds);
+                    string minutes = string.Format("{0:00}", difference.Minutes);
+                    Console.WriteLine($"Place {i + 1} : {ParkingPlace[i].ActualCar.LicensePlate} (depuis {difference.Hours}h{minutes}:{secondes})");
+                }
+                
+            }
         }
         private void ShowMessage(int messageId)
         {
@@ -168,13 +189,17 @@ L = Libre
 
             if (!vehiculeFound)
             {
-                if (!int.IsPositive(int.Parse(vehiculeInfo)))
+                if (place)
                 {
-                    this.ShowMessage(6);
-                }
-                else if (place)
-                {
-                    this.ShowMessage(5);
+
+                    if (!int.IsPositive(int.Parse(vehiculeInfo)))
+                    {
+                        this.ShowMessage(6);
+                    }
+                    else
+                    {
+                        this.ShowMessage(5);
+                    }
                 }
                 else
                 {
@@ -184,7 +209,6 @@ L = Libre
         }
         public void CloseApp()
         {
-            Console.Clear();
             Console.Write("Êtes vous sûr de vouloir fermet l'application ? (o,n) : ");
             string userEntry = Console.ReadLine();
 
@@ -203,6 +227,7 @@ L = Libre
         private void ExitChoice( Voiture thisCar, Ticket t, int i)
         {
             t.CalculatePrice();
+            t.Lefting = true;
             Console.WriteLine(t.ToString());
 
             Console.Write("Voulez-vous vraiment faire sortir cette voiture ? (o/n) : ");
@@ -210,6 +235,7 @@ L = Libre
             {
                 thisCar.IsActuallyInThePark = false;
                 ParkingPlace[i] = null;
+                t.exitHour = DateTime.Now;
                 Console.WriteLine($"La place de parque N°{i} à été libérée.");
             }
             else
@@ -217,6 +243,7 @@ L = Libre
                 t.Price = 0;
                 Console.WriteLine($"la place de parque N°{i} est toujours occupée.");
             }
+            t.Lefting = false;
         }
         public void EnterVehicule(String licensePLate)
         {
@@ -232,6 +259,7 @@ L = Libre
                             CarList.Add(new Voiture(licensePLate));
                             ParkingPlace[i] = new Place(CarList[CarList.Count - 1]);
                             TicketList.Add(new Ticket(CarList[CarList.Count-1],i));
+                            Console.WriteLine(TicketList[TicketList.Count - 1]);
                             isCheckGood = true;
                             ShowMessage(0);
                             break;
@@ -323,17 +351,12 @@ Default : Quitter
         }
         public void ShowStats()
         {
-            Console.Clear();
             Console.WriteLine($@"=== ÉTAT DU PARKING ===
 Places totales : {this.ParkingPlace.Count().ToString()}
 Places occupées : {CountOccupedPlace()}
 Places libres : {ParkingPlace.Length - CountOccupedPlace()}
 Taux d'occupation : {CountOccupedPlace() * 5}%
-");
-
-            Console.WriteLine($"Plan du parking (L=libre, X=Occupé) :");
-            ShowTable();
-            Console.WriteLine("Véhicules présents:\n");
+");;
             Console.ReadLine();
 
         }

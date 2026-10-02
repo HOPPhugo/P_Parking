@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,35 +12,62 @@ namespace P_Parking_App
         public Voiture LinkedCar { get; set; }
         public double Price { get; set; }
         private const double RATE = 2.50; 
-        public DateTime EntryHour {get; set;}
+        public TimeSpan elapsedTime {get; set;}
+        public DateTime entryHour { get; set; }
+        public DateTime exitHour { get; set; }
         public int PlaceNumber { get; set; }
+        public Stopwatch CarStopWatch { get; set; }
+        public bool Lefting = false;
 
         public Ticket(Voiture linkedCar, int placeNumber) {
             Price = 0;
-            EntryHour = DateTime.Now;
             LinkedCar = linkedCar;
             PlaceNumber = placeNumber;
-            Console.WriteLine(this.ToString());
+            entryHour = DateTime.Now;
+            CarStopWatch = Stopwatch.StartNew();
+            CarStopWatch.Start();
+            
         }
         public double CalculatePrice()
         {
-            Price = (DateTime.Now.CompareTo(EntryHour))*RATE;
+            Price = Math.Round(GetElapsedTime().TotalHours, 2)* RATE;
+            if (Price == 0)
+            {
+                Price = 0.10;
+            }
             return Price;
+        }
+        public TimeSpan GetElapsedTime()
+        {
+            return this.CarStopWatch.Elapsed;
         }
         public override string ToString()
         {
+            string priceTot = string.Format("{0:0.00}", Price);
+            string minutes = string.Format("{0:00}", GetElapsedTime().TotalMinutes);
             if (Price == 0)
             {
-                return $@"Heure d'entrée    : {EntryHour}
+                return $@"Heure d'entrée    : {entryHour}
 Place du vehicule : N°{PlaceNumber+1}
 Tarif horaire     : {RATE}.-/h";
             }
-            else
+            else if (Lefting)
             {
-                return $@"Heure d'entrée    : {EntryHour}
+                return $@"Heure d'entrée    : {entryHour}
+Heure de sortie   : {DateTime.Now}
+Temps passé dans le parking : {Math.Round(GetElapsedTime().TotalHours, 2)}h{minutes}
 Place du vehicule : N°{PlaceNumber+1}
 Tarif horaire     : {RATE}.-/h
-Prix du ticket : {Price}";
+Prix du ticket    : {priceTot}.-";
+            }
+            else
+            {
+                return $@"Heure d'entrée    : {entryHour}
+Heure de sortie   : {exitHour.Date}
+Temps passé dans le parking : {Math.Round(GetElapsedTime().TotalHours, 2)}h{minutes}
+Place du vehicule : N°{PlaceNumber + 1}
+Tarif horaire     : {RATE}.-/h
+Prix du ticket    : {priceTot}.-";
             }
         }
     }
