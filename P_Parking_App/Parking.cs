@@ -15,6 +15,7 @@ namespace P_Parking_App
         public Place[] ParkingPlace { get; set; }
         public List<Voiture> CarList { get; set; }
         public List<Ticket> TicketList { get; set; }
+        public double money = 0;
         public Parking(int nbrPlace) { 
             ParkingPlace = new Place[nbrPlace];
             CarList = new List<Voiture>();
@@ -61,24 +62,7 @@ L = Libre
             Console.WriteLine("╚═════════╩═════════╩═════════╩═════════╩═════════╝");
 
             Console.WriteLine("\n\nVéhicules présents : ");
-            for (int i =0;i < ParkingPlace.Length; i++)
-            {
-                if (ParkingPlace[i] != null)
-                {
-                    TimeSpan difference = DateTime.Now - DateTime.Now;
-                    foreach (Ticket t in TicketList)
-                    {
-                        if (t.LinkedCar == ParkingPlace[i].ActualCar && t.Price == 0)
-                        {
-                            difference = t.GetElapsedTime();
-                        }
-                    }
-                    string secondes = string.Format("{0:00}", difference.Seconds);
-                    string minutes = string.Format("{0:00}", difference.Minutes);
-                    Console.WriteLine($"Place {i + 1} : {ParkingPlace[i].ActualCar.LicensePlate} (depuis {difference.Hours}h{minutes}:{secondes})");
-                }
-                
-            }
+            ShowCar();
         }
         private void ShowMessage(int messageId)
         {
@@ -171,7 +155,7 @@ L = Libre
                 }
             }
             else
-            { 
+            {
                 place = true;
                 if ( int.IsPositive(int.Parse(vehiculeInfo)) && this.ParkingPlace[int.Parse(vehiculeInfo)] != null)
                 {
@@ -237,6 +221,7 @@ L = Libre
                 ParkingPlace[i] = null;
                 t.exitHour = DateTime.Now;
                 Console.WriteLine($"La place de parque N°{i} à été libérée.");
+                money += t.Price;
             }
             else
             {
@@ -334,8 +319,25 @@ L = Libre
         }
         public void ShowCar()
         {
-            //Faire un foreach du tableau des voitures
-            //Puis mettre "Place {car[b].place} : {car[b].licensePlate} (depuis {car[b].time})"
+
+            for (int i = 0; i < ParkingPlace.Length; i++)
+            {
+                if (ParkingPlace[i] != null)
+                {
+                    TimeSpan difference = DateTime.Now - DateTime.Now;
+                    foreach (Ticket t in TicketList)
+                    {
+                        if (t.LinkedCar == ParkingPlace[i].ActualCar && t.Price == 0)
+                        {
+                            difference = t.GetElapsedTime();
+                        }
+                    }
+                    string secondes = string.Format("{0:00}", difference.Seconds);
+                    string minutes = string.Format("{0:00}", difference.Minutes);
+                    Console.WriteLine($"Place {i + 1} : {ParkingPlace[i].ActualCar.LicensePlate} (depuis {difference.Hours}h{minutes}:{secondes})");
+                }
+
+            }
         }
         public void ShowMenu()
         {Console.Write(@"=== MENU PRINCIPAL ===
@@ -356,7 +358,9 @@ Places totales : {this.ParkingPlace.Count().ToString()}
 Places occupées : {CountOccupedPlace()}
 Places libres : {ParkingPlace.Length - CountOccupedPlace()}
 Taux d'occupation : {CountOccupedPlace() * 5}%
-");;
+Totale d'argent engendré : {money}.-
+");
+            ShowCar();
             Console.ReadLine();
 
         }
