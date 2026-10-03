@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace P_Parking_App
 {
-    internal class Ticket
+    public class Ticket
     {
         public Voiture LinkedCar { get; set; }
         public double Price { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P_Parking_App
 {
-    internal class Place
+    public class Place
     {
         public Voiture ActualCar { get; set; }
         //variable qui stock la voiture qu'il occupe

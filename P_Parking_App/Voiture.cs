@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace P_Parking_App
 {
-    internal class Voiture
+    public class Voiture
     {
         public string LicensePlate { get; set; }
         public bool IsActuallyInThePark { get; set; }

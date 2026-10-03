@@ -10,7 +10,7 @@ using P_Parking_App;
 
 namespace P_Parking_App
 {
-    internal class Parking
+    public class Parking
     {
         public Place[] ParkingPlace { get; set; }
         public List<Voiture> CarList { get; set; }
@@ -36,7 +36,7 @@ L = Libre
                 {
                     if (this.ParkingPlace[actualCase] != null)
                     {
-                        if (actualCase <= 8){
+                        if (actualCase <= 9){
                         Console.Write($" N°{actualCase}   X ║");}
                         else
                         {
@@ -45,7 +45,7 @@ L = Libre
                     }
                     else
                     {
-                        if (actualCase <= 8){
+                        if (actualCase <= 9){
                         Console.Write($" N°{actualCase}   L ║");}
                         else
                         {
@@ -285,7 +285,7 @@ L = Libre
                 }
             }
         }
-        private int CheckLicensePlate(string licensePLate)
+        public int CheckLicensePlate(string licensePLate)
         {
             int nbrLettre =0;
             int nbrDigit = 0;
