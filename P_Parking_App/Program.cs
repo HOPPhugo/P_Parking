@@ -23,7 +23,7 @@ while (true)
         case "3": parking1.ShowTable(); Console.ReadLine(); break; 
         case "4": parking1.SearchVehicule(Console.ReadLine()); Console.ReadLine(); break; 
         case "5": parking1.ShowStats();  break;
-        case "6": break; //Appeler TransactionsHistory
+        case "6": parking1.ShowTransactionHistory(); Console.ReadLine(); break;
         default : parking1.CloseApp(); break;
     }
 }

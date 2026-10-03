@@ -12,6 +12,7 @@ namespace P_Parking_App
         public bool IsActuallyInThePark { get; set; }
         public Voiture(string licensePlate) { 
             LicensePlate = licensePlate;
+            LicensePlate = LicensePlate.ToLower();
             IsActuallyInThePark = true;
         }
     }

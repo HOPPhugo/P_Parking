@@ -45,6 +45,7 @@ namespace P_Parking_App
         {
             string priceTot = string.Format("{0:0.00}", Price);
             string minutes = string.Format("{0:00}", GetElapsedTime().TotalMinutes);
+            string secondes = string.Format("{0:00}", GetElapsedTime().TotalSeconds);
             if (Price == 0)
             {
                 return $@"Heure d'entrée    : {entryHour}
@@ -55,7 +56,7 @@ Tarif horaire     : {RATE}.-/h";
             {
                 return $@"Heure d'entrée    : {entryHour}
 Heure de sortie   : {DateTime.Now}
-Temps passé dans le parking : {Math.Round(GetElapsedTime().TotalHours, 2)}h{minutes}
+Temps passé dans le parking : {Math.Round(GetElapsedTime().TotalHours)}h{minutes}:{secondes}
 Place du vehicule : N°{PlaceNumber+1}
 Tarif horaire     : {RATE}.-/h
 Prix du ticket    : {priceTot}.-";
@@ -64,7 +65,7 @@ Prix du ticket    : {priceTot}.-";
             {
                 return $@"Heure d'entrée    : {entryHour}
 Heure de sortie   : {exitHour.Date}
-Temps passé dans le parking : {Math.Round(GetElapsedTime().TotalHours, 2)}h{minutes}
+Temps passé dans le parking : {Math.Round(GetElapsedTime().TotalHours)}h{minutes}:{secondes}
 Place du vehicule : N°{PlaceNumber + 1}
 Tarif horaire     : {RATE}.-/h
 Prix du ticket    : {priceTot}.-";

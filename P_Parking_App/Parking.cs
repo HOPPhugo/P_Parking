@@ -37,19 +37,19 @@ L = Libre
                     if (this.ParkingPlace[actualCase] != null)
                     {
                         if (actualCase <= 8){
-                        Console.Write($" N°{actualCase+1}   X ║");}
+                        Console.Write($" N°{actualCase}   X ║");}
                         else
                         {
-                            Console.Write($" N°{actualCase+1}  X ║");
+                            Console.Write($" N°{actualCase}  X ║");
                         }
                     }
                     else
                     {
                         if (actualCase <= 8){
-                        Console.Write($" N°{actualCase+1}   L ║");}
+                        Console.Write($" N°{actualCase}   L ║");}
                         else
                         {
-                            Console.Write($" N°{actualCase+1}  L ║");
+                            Console.Write($" N°{actualCase}  L ║");
                         }
                     }
                     actualCase++;
@@ -64,14 +64,14 @@ L = Libre
             Console.WriteLine("\n\nVéhicules présents : ");
             ShowCar();
         }
-        private void ShowMessage(int messageId)
+        private void ShowMessage(int messageId, Voiture actualCar)
         {
             switch (messageId)
             {
-                case 0: Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine($"La voiture avec la plaque : << {this.CarList[this.CarList.Count() - 1].LicensePlate} >> à bien été ajoutée !"); break;
+                case 0: Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine($"La voiture avec la plaque : << {actualCar.LicensePlate} >> à bien été ajoutée !"); break;
                 case 1: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("La voiture n'as pas pu être ajoutée pour cause de manque de place."); break;
                 case 2: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("La norme pour la plaque n'as pas été respectée ! Exemple : VD-274891"); break;
-                case 3: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine($"Une voiture ayant la plaque : <<{this.CarList[this.CarList.Count() - 1].LicensePlate}>> existe déjà dans le parking"); break;
+                case 3: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine($"Une voiture ayant la plaque : <<{actualCar.LicensePlate}>> existe déjà dans le parking"); break;
                 case 4: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("La voiture mensionée n'est pas dans le parking."); break;
                 case 5: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Cet place est actuellement libre"); break;
                 case 6: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Cet place ne fait pas parti du Parking."); break;
@@ -104,15 +104,18 @@ L = Libre
             else
             {
                 place = true;
-                if (this.ParkingPlace[int.Parse(vehiculeInfo)] != null)
-                {
-                    for (int i = 0; i < TicketList.Count(); i++)
+
+                if (int.TryParse(vehiculeInfo, out int value)){
+                    if (this.ParkingPlace[value] != null)
                     {
-                        if (TicketList[i].PlaceNumber == int.Parse(vehiculeInfo) && TicketList[i].Price == 0)
+                        for (int i = 0; i < TicketList.Count(); i++)
                         {
-                            vehiculeFound = true;
-                            Console.WriteLine(TicketList[i].ToString());
-                            Console.WriteLine($"Plaque d'immatriculation : <<{TicketList[i].LinkedCar.LicensePlate}>>");
+                            if (TicketList[i].PlaceNumber == value && TicketList[i].Price == 0)
+                            {
+                                vehiculeFound = true;
+                                Console.WriteLine(TicketList[i].ToString());
+                                Console.WriteLine($"Plaque d'immatriculation : <<{TicketList[i].LinkedCar.LicensePlate}>>");
+                            }
                         }
                     }
                 }
@@ -123,11 +126,11 @@ L = Libre
             {
                 if (place)
                 {
-                    this.ShowMessage(5);
+                    this.ShowMessage(5, null);
                 }
                 else
                 {
-                    this.ShowMessage(4);
+                    this.ShowMessage(4, null);
                 }
             }
         }
@@ -157,14 +160,17 @@ L = Libre
             else
             {
                 place = true;
-                if ( int.IsPositive(int.Parse(vehiculeInfo)) && this.ParkingPlace[int.Parse(vehiculeInfo)] != null)
-                {
-                    for (int i = 0; i < TicketList.Count(); i++)
+                int placeNumber = 0;
+                if (int.TryParse(vehiculeInfo, out placeNumber)) {
+                    if (int.IsPositive(placeNumber) && this.ParkingPlace[placeNumber] != null)
                     {
-                        if (TicketList[i].PlaceNumber == int.Parse(vehiculeInfo))
+                        for (int i = 0; i < TicketList.Count(); i++)
                         {
-                            vehiculeFound = true;
-                            ExitChoice(TicketList[i].LinkedCar, TicketList[i], i);
+                            if (TicketList[i].PlaceNumber == placeNumber)
+                            {
+                                vehiculeFound = true;
+                                ExitChoice(TicketList[i].LinkedCar, TicketList[i], i);
+                            }
                         }
                     }
                 }
@@ -175,19 +181,19 @@ L = Libre
             {
                 if (place)
                 {
-
-                    if (!int.IsPositive(int.Parse(vehiculeInfo)))
+                    int.TryParse(vehiculeInfo, out int value);
+                    if (!int.IsPositive(value))
                     {
-                        this.ShowMessage(6);
+                        this.ShowMessage(6, null);
                     }
                     else
                     {
-                        this.ShowMessage(5);
+                        this.ShowMessage(5, null);
                     }
                 }
                 else
                 {
-                    this.ShowMessage(4);
+                    this.ShowMessage(4, null);
                 }
             }
         }
@@ -210,8 +216,10 @@ L = Libre
         }
         private void ExitChoice( Voiture thisCar, Ticket t, int i)
         {
+            Console.Clear();
             t.CalculatePrice();
             t.Lefting = true;
+            Console.WriteLine(thisCar.LicensePlate);
             Console.WriteLine(t.ToString());
 
             Console.Write("Voulez-vous vraiment faire sortir cette voiture ? (o/n) : ");
@@ -221,6 +229,7 @@ L = Libre
                 ParkingPlace[i] = null;
                 t.exitHour = DateTime.Now;
                 Console.WriteLine($"La place de parque N°{i} à été libérée.");
+                t.CarStopWatch.Stop();
                 money += t.Price;
             }
             else
@@ -233,37 +242,46 @@ L = Libre
         public void EnterVehicule(String licensePLate)
         {
             bool isCheckGood = false;
+            licensePLate = licensePLate.ToLower();
             int licenseCheck = CheckLicensePlate(licensePLate);
             if (licenseCheck == 1)
             {
-                
-                for (int i  = 0; i < ParkingPlace.Length; i++)
+                Console.Clear();
+                Console.Write("Quel place voulez vous que la voiture occupe ?(0-19) : ");
+                bool isDigit = int.TryParse(Console.ReadLine(), out int placeChoosed);
+                if (isDigit)
                 {
-                        if (ParkingPlace[i] ==  null)
+                    if (placeChoosed >= 0 && placeChoosed <= 19)
+                    {
+                        if (ParkingPlace[placeChoosed] == null)
                         {
                             CarList.Add(new Voiture(licensePLate));
-                            ParkingPlace[i] = new Place(CarList[CarList.Count - 1]);
-                            TicketList.Add(new Ticket(CarList[CarList.Count-1],i));
+                            ParkingPlace[placeChoosed] = new Place(CarList[CarList.Count - 1]);
+                            TicketList.Add(new Ticket(CarList[CarList.Count - 1], placeChoosed));
                             Console.WriteLine(TicketList[TicketList.Count - 1]);
                             isCheckGood = true;
-                            ShowMessage(0);
-                            break;
+                            ShowMessage(0, CarList[CarList.Count - 1]);
                         }
+                    }
                 }
                 if (!isCheckGood){
                     isCheckGood = true;
-                    ShowMessage(1);
+                    ShowMessage(1, null);
                 }
                 
             }
             if (!isCheckGood){
                     isCheckGood = true;
                 if (licenseCheck == 0){
-                    ShowMessage(2);
+                    ShowMessage(2, null);
                 }
                 else
                 {
-                    ShowMessage(3);
+                    foreach (Voiture v in CarList)
+                    {
+                        if (v.LicensePlate == licensePLate && v.IsActuallyInThePark == true)
+                        ShowMessage(3, v);
+                    }
                 }
             }
         }
@@ -363,6 +381,34 @@ Totale d'argent engendré : {money}.-
             ShowCar();
             Console.ReadLine();
 
+        }
+        public void ShowTransactionHistory()
+        {
+            Console.WriteLine("Historique des transactions : \n");
+            foreach (Voiture v in CarList)
+            {
+                Console.WriteLine($@"
+Voiture : {v.LicensePlate}");
+                foreach (Ticket t in TicketList)
+                {
+                    if (t.LinkedCar == v)
+                    {
+                        Console.WriteLine($"Heure d'entrée : {t.entryHour}");
+                        TimeSpan elapsedTime = t.GetElapsedTime();
+                        string secondes = string.Format("{0:00}", elapsedTime.Seconds);
+                        string minutes = string.Format("{0:00}", elapsedTime.Minutes);
+                        if (!v.IsActuallyInThePark)
+                        {
+                            Console.WriteLine($"Heure de sortie : {t.exitHour}");
+                            Console.WriteLine($"Temps passé dans le parking : {t.GetElapsedTime().Hours}h{minutes}:{secondes}");
+                            Console.WriteLine($"Prix du ticket : {t.Price}.-");
+                        }
+                        if (v.IsActuallyInThePark)
+                        Console.WriteLine($"Temps passé dans le parking : {t.GetElapsedTime().Hours}h{minutes}:{secondes}");
+                    }
+                }
+            }
+            
         }
     }
 }

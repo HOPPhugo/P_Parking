@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "D:\\P_parking\\P_Parking_App\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{7CBB2A82-05D4-4E20-B2A0-EEAF450BE871}|P_Parking_App.csproj|d:\\p_parking\\p_parking_app\\parking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CBB2A82-05D4-4E20-B2A0-EEAF450BE871}|P_Parking_App.csproj|solutionrelative:parking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7CBB2A82-05D4-4E20-B2A0-EEAF450BE871}|P_Parking_App.csproj|d:\\p_parking\\p_parking_app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7CBB2A82-05D4-4E20-B2A0-EEAF450BE871}|P_Parking_App.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7CBB2A82-05D4-4E20-B2A0-EEAF450BE871}|P_Parking_App.csproj|d:\\p_parking\\p_parking_app\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CBB2A82-05D4-4E20-B2A0-EEAF450BE871}|P_Parking_App.csproj|solutionrelative:ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7CBB2A82-05D4-4E20-B2A0-EEAF450BE871}|P_Parking_App.csproj|d:\\p_parking\\p_parking_app\\voiture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7CBB2A82-05D4-4E20-B2A0-EEAF450BE871}|P_Parking_App.csproj|solutionrelative:voiture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7CBB2A82-05D4-4E20-B2A0-EEAF450BE871}|P_Parking_App.csproj|d:\\p_parking\\p_parking_app\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{7CBB2A82-05D4-4E20-B2A0-EEAF450BE871}|P_Parking_App.csproj|solutionrelative:ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{7CBB2A82-05D4-4E20-B2A0-EEAF450BE871}|P_Parking_App.csproj|d:\\p_parking\\p_parking_app\\parking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CBB2A82-05D4-4E20-B2A0-EEAF450BE871}|P_Parking_App.csproj|solutionrelative:parking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
@@ -43,38 +43,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Ticket.cs",
               "DocumentMoniker": "D:\\P_parking\\P_Parking_App\\Ticket.cs",
               "RelativeDocumentMoniker": "Ticket.cs",
               "ToolTip": "D:\\P_parking\\P_Parking_App\\Ticket.cs",
               "RelativeToolTip": "Ticket.cs",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAkwEIAAABTAAAAAAAAAA==",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAkwC0AAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-25T09:01:22.348Z"
+              "WhenOpened": "2026-09-25T09:01:22.348Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\P_parking\\P_Parking_App\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "D:\\P_parking\\P_Parking_App\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-11T06:14:08.175Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Parking.cs",
               "DocumentMoniker": "D:\\P_parking\\P_Parking_App\\Parking.cs",
               "RelativeDocumentMoniker": "Parking.cs",
               "ToolTip": "D:\\P_parking\\P_Parking_App\\Parking.cs",
               "RelativeToolTip": "Parking.cs",
-              "ViewState": "AgIAAIoAAAAAAAAAAAAjwJ0AAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAG8BAAAAAAAAAAAIwIgBAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-09-11T06:57:36.244Z",
               "EditorCaption": ""
