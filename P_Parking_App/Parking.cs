@@ -379,7 +379,7 @@ Taux d'occupation : {CountOccupedPlace() * 5}%
 Totale d'argent engendré : {money}.-
 ");
             ShowCar();
-            Console.ReadLine();
+            
 
         }
         public void ShowTransactionHistory()

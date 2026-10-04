@@ -49,7 +49,7 @@ namespace P_Parking_App
             if (Price == 0)
             {
                 return $@"Heure d'entrée    : {entryHour}
-Place du vehicule : N°{PlaceNumber+1}
+Place du vehicule : N°{PlaceNumber}
 Tarif horaire     : {RATE}.-/h";
             }
             else if (Lefting)
@@ -57,7 +57,7 @@ Tarif horaire     : {RATE}.-/h";
                 return $@"Heure d'entrée    : {entryHour}
 Heure de sortie   : {DateTime.Now}
 Temps passé dans le parking : {Math.Round(GetElapsedTime().TotalHours)}h{minutes}:{secondes}
-Place du vehicule : N°{PlaceNumber+1}
+Place du vehicule : N°{PlaceNumber}
 Tarif horaire     : {RATE}.-/h
 Prix du ticket    : {priceTot}.-";
             }
@@ -66,7 +66,7 @@ Prix du ticket    : {priceTot}.-";
                 return $@"Heure d'entrée    : {entryHour}
 Heure de sortie   : {exitHour.Date}
 Temps passé dans le parking : {Math.Round(GetElapsedTime().TotalHours)}h{minutes}:{secondes}
-Place du vehicule : N°{PlaceNumber + 1}
+Place du vehicule : N°{PlaceNumber}
 Tarif horaire     : {RATE}.-/h
 Prix du ticket    : {priceTot}.-";
             }
