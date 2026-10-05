@@ -317,7 +317,7 @@ L = Libre
         /// Méthode <c>CheckLicensePlate</c> Vérifie si la plaque d'immatriculation est dans les normes puis vérifie si elle est dans le parking.
         /// </summary>
         /// <returns>
-        /// <para>sois 0,1,2.</para>
+        /// <para>Un <see cref="int"/> qui est sois 0,1,2.</para>
         /// <para>0 : La plaque de respecte pas les normes.</para>
         /// <para>1 : La plaque est dans les normes mais pas dans le parking.</para>
         /// 2 : La plaque est dans les normes et est dans le parking.
@@ -364,7 +364,7 @@ L = Libre
         /// Méthode <c>CountOccupedPlace</c> Permet de compter le nombre de place occupée dans le parking
         /// </summary>
         /// <returns>
-        /// Le nombre de place occupée du parking
+        /// Un <see cref="int"/> qui est le nombre de place occupée du parking
         /// </returns>
         private int CountOccupedPlace()
         {

@@ -35,7 +35,7 @@ namespace P_Parking_App
         /// Méthode <c>CalculatePrice</c> calcule le prix du ticket selon le temps passé dans le parking et le tarif horraire
         /// </summary>
         /// <returns>
-        /// Le prix du ticket.
+        /// un <see cref="Double"/> avec le prix du ticket.
         /// </returns>
         public double CalculatePrice()
         {
@@ -55,7 +55,13 @@ namespace P_Parking_App
         public TimeSpan GetElapsedTime()
         {
             return this.CarStopWatch.Elapsed;
-        } //Permet de récupérer le temps passé dans le parking
+        } 
+        /// <summary>
+        /// Méthode <c>ToString</c> permet de modifier les informations du ToString de Ticket
+        /// </summary>
+        /// <returns>
+        /// Un <see cref="String"/> contenant les informations du ticket.
+        /// </returns>
         public override string ToString()
         {
             string priceTot = string.Format("{0:0.00}", Price);
@@ -85,6 +91,6 @@ Place du vehicule : N°{PlaceNumber}
 Tarif horaire     : {RATE}.-/h
 Prix du ticket    : {priceTot}.-";
             }
-        }  //Permet de modifier les informations du ToString de Ticket
+        }  
     }
 }
