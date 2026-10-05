@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using P_Parking_App;
@@ -33,7 +34,7 @@ namespace P_Parking_App
         public void ShowTable()
         {
             int actualCase = 0;
-            double nbrRows = Math.Round((double)(this.ParkingPlace.Length / 5), 0);
+            double nbrRows = (double)this.ParkingPlace.Length / 5;
             Console.WriteLine(@"
 X = Occupé
 L = Libre
@@ -44,32 +45,61 @@ L = Libre
                 Console.Write("║");
                 for(int j = 0; j < 5;j++)
                 {
-                    if (this.ParkingPlace[actualCase] != null)
-                    {
-                        if (actualCase <= 9){
-                        Console.Write($" N°{actualCase}   X ║");}
+                    if (actualCase <= this.ParkingPlace.Length-1){
+                        if (this.ParkingPlace[actualCase] != null)
+                        {
+                            if (actualCase <= 9)
+                            {
+                                Console.Write($" N°{actualCase}   X ║");
+                            }
+                            else
+                            {
+                                Console.Write($" N°{actualCase}  X ║");
+                            }
+                        }
                         else
                         {
-                            Console.Write($" N°{actualCase}  X ║");
+                            if (actualCase <= 9)
+                            {
+                                Console.Write($" N°{actualCase}   L ║");
+                            }
+                            else
+                            {
+                                Console.Write($" N°{actualCase}  L ║");
+                            }
                         }
                     }
                     else
                     {
-                        if (actualCase <= 9){
-                        Console.Write($" N°{actualCase}   L ║");}
-                        else
-                        {
-                            Console.Write($" N°{actualCase}  L ║");
-                        }
+                            Console.Write("         ║");
                     }
                     actualCase++;
                 }
                 Console.WriteLine();
-                if (i < 3){
+                if (i < nbrRows-1){
                     Console.WriteLine("╠═════════╬═════════╬═════════╬═════════╬═════════╣");
                 }
             }
-            Console.WriteLine("╚═════════╩═════════╩═════════╩═════════╩═════════╝");
+            if (actualCase - this.ParkingPlace.Length == 0)
+            {
+                Console.WriteLine("╚═════════╩═════════╩═════════╩═════════╩═════════╝");
+            }
+            else
+            {
+                Console.Write("╚");
+                for (int i = 0; i < 5 -(actualCase - this.ParkingPlace.Length); i++ )
+                {
+                    if (i != 0)
+                    {
+                        Console.Write("╩═════════");
+                    }
+                    else
+                    {
+                        Console.Write("═════════");
+                    }
+                }
+                Console.Write("╝");
+            }
 
             Console.WriteLine("\n\nVéhicules présents : ");
             ShowCar();
@@ -279,7 +309,7 @@ L = Libre
                 bool isDigit = int.TryParse(Console.ReadLine(), out int placeChoosed);
                 if (isDigit)
                 {
-                    if (placeChoosed >= 0 && placeChoosed <= 19)
+                    if (placeChoosed >= 0 && placeChoosed <= ParkingPlace.Length-1)
                     {
                         if (ParkingPlace[placeChoosed] == null)
                         {

@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\P_parking\\TestProject2\\TestUnitaires.csproj": {}
+    "F:\\P_parking\\TestProject2\\TestUnitaires.csproj": {}
   },
   "projects": {
-    "D:\\P_parking\\P_Parking_App\\P_Parking_App.csproj": {
+    "F:\\P_parking\\P_Parking_App\\P_Parking_App.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\P_parking\\P_Parking_App\\P_Parking_App.csproj",
+        "projectUniqueName": "F:\\P_parking\\P_Parking_App\\P_Parking_App.csproj",
         "projectName": "P_Parking_App",
-        "projectPath": "D:\\P_parking\\P_Parking_App\\P_Parking_App.csproj",
-        "packagesPath": "C:\\Users\\pm51srd\\.nuget\\packages\\",
-        "outputPath": "D:\\P_parking\\P_Parking_App\\obj\\",
+        "projectPath": "F:\\P_parking\\P_Parking_App\\P_Parking_App.csproj",
+        "packagesPath": "C:\\Users\\hugos\\.nuget\\packages\\",
+        "outputPath": "F:\\P_parking\\P_Parking_App\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\pm51srd\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\hugos\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,11 +22,11 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {}
           }
@@ -45,10 +41,11 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "imports": [
             "net461",
@@ -66,25 +63,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\P_parking\\TestProject2\\TestUnitaires.csproj": {
+    "F:\\P_parking\\TestProject2\\TestUnitaires.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\P_parking\\TestProject2\\TestUnitaires.csproj",
+        "projectUniqueName": "F:\\P_parking\\TestProject2\\TestUnitaires.csproj",
         "projectName": "TestUnitaires",
-        "projectPath": "D:\\P_parking\\TestProject2\\TestUnitaires.csproj",
-        "packagesPath": "C:\\Users\\pm51srd\\.nuget\\packages\\",
-        "outputPath": "D:\\P_parking\\TestProject2\\obj\\",
+        "projectPath": "F:\\P_parking\\TestProject2\\TestUnitaires.csproj",
+        "packagesPath": "C:\\Users\\hugos\\.nuget\\packages\\",
+        "outputPath": "F:\\P_parking\\TestProject2\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\pm51srd\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\hugos\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -92,15 +85,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\P_parking\\P_Parking_App\\P_Parking_App.csproj": {
-                "projectPath": "D:\\P_parking\\P_Parking_App\\P_Parking_App.csproj"
+              "F:\\P_parking\\P_Parking_App\\P_Parking_App.csproj": {
+                "projectPath": "F:\\P_parking\\P_Parking_App\\P_Parking_App.csproj"
               }
             }
           }
@@ -115,10 +108,11 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
             "MSTest": {
@@ -146,7 +140,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
