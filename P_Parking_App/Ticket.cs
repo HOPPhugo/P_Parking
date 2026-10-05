@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace P_Parking_App
 {
+    /// <summary>
+    /// Classe <c>Ticket</c> stocke les données des vehicules dans la parking.
+    /// </summary>
     public class Ticket
     {
         public Voiture LinkedCar { get; set; }
@@ -28,6 +31,12 @@ namespace P_Parking_App
             CarStopWatch.Start();
             
         }
+        /// <summary>
+        /// Méthode <c>CalculatePrice</c> calcule le prix du ticket selon le temps passé dans le parking et le tarif horraire
+        /// </summary>
+        /// <returns>
+        /// Le prix du ticket.
+        /// </returns>
         public double CalculatePrice()
         {
             Price = Math.Round(GetElapsedTime().TotalHours, 2)* RATE;
@@ -36,7 +45,13 @@ namespace P_Parking_App
                 Price = 0.10;
             }
             return Price;
-        } //Calcule le prix du ticket selon le tarif horaire et le temps passé dans le parking
+        }
+        /// <summary>
+        /// Méthode <c>GetElapsedTime</c> permet de récupérer le temps passé dans le parking.
+        /// </summary>
+        /// <returns>
+        /// Un <see cref="TimeSpan"/> qui est le temps passé dans le parking
+        /// </returns>
         public TimeSpan GetElapsedTime()
         {
             return this.CarStopWatch.Elapsed;

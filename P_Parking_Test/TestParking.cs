@@ -9,7 +9,7 @@ namespace P_Parking_Test
     {
         
         [TestMethod]
-        public void CheckLicensePlateActuallyInThePark()
+        public void CheckLicensePlate_ActuallyInThePark()
         {
             //Arrange
             String licensePlate = "VD-092663";

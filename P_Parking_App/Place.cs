@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace P_Parking_App
 {
+    /// <summary>
+    /// Classe <c>Place</c> fait le lien entre les places du parking et les voitures.
+    /// </summary>
     public class Place
     {
-        public Voiture ActualCar { get; set; }
-        //variable qui stock la voiture qu'il occupe
+        public Voiture ActualCar { get; set; }//variable qui stock la voiture qu'il occupe
+
         public Place(Voiture actualCar) {
             this.ActualCar = actualCar;
         }

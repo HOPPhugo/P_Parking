@@ -10,30 +10,36 @@ using P_Parking_App;
 
 namespace P_Parking_App
 {
+    /// <summary>
+    /// Classe <c>Parking</c> Permet de créer et gérer un parking
+    /// </summary>
     public class Parking
     {
         public Place[] ParkingPlace { get; set; }
         public List<Voiture> CarList { get; set; }
         public List<Ticket> TicketList { get; set; }
-        public double money = 0;
+        public double Money = 0;
         
-        //Constructeur Parking
+
         public Parking(int nbrPlace) { 
             ParkingPlace = new Place[nbrPlace];
             CarList = new List<Voiture>();
             TicketList = new List<Ticket>();
         }
 
-
+        /// <summary>
+        /// Méthode <c>ShowTalbe</c> Affiche le parking avec l'état des places et les parking actuellement Parkée
+        /// </summary>
         public void ShowTable()
         {
             int actualCase = 0;
+            double nbrRows = Math.Round((double)(this.ParkingPlace.Length / 5), 0);
             Console.WriteLine(@"
 X = Occupé
 L = Libre
             ");
             Console.WriteLine("Plan du parking : \n╔═════════╦═════════╦═════════╦═════════╦═════════╗");
-            for (int i = 0;i < 4; i++)
+            for (int i = 0;i < nbrRows; i++)
             {
                 Console.Write("║");
                 for(int j = 0; j < 5;j++)
@@ -67,7 +73,10 @@ L = Libre
 
             Console.WriteLine("\n\nVéhicules présents : ");
             ShowCar();
-        }//Affiche le parking avec l'état des places et les parking actuellement parkée
+        }
+        /// <summary>
+        /// Méthode <c>ShowMessage</c> Affiche un message pour diverse état de l'ajout dun vehicule et recherche
+        /// </summary>
         private void ShowMessage(int messageId, Voiture actualCar)
         {
             switch (messageId)
@@ -80,7 +89,10 @@ L = Libre
                 case 5: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Cet place est actuellement libre"); break;
                 case 6: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Cet place ne fait pas parti du Parking."); break;
             }
-        } //Affiche un message pour diverse état de l'ajout dun vehicule et recherche
+        }
+        /// <summary>
+        /// Méthode <c>SearchVehicule</c> Permet de rechercher un vehicule et d'afficher ses données
+        /// </summary>
         public void SearchVehicule(string vehiculeInfo)
         {
             bool vehiculeFound = false;
@@ -137,7 +149,10 @@ L = Libre
                     this.ShowMessage(4, null);
                 }
             }
-        } //Permet de rechercher un vehicule et d'afficher ses données
+        }
+        /// <summary>
+        /// Méthode <c>ExitVehicule</c> Permet de faire sortir un vehicule du parking en rentrant sois sa plaque sois sa place sur l'aquelle il est actuellement
+        /// </summary>
         public void ExitVehicule(string vehiculeInfo)
         {
             bool vehiculeFound = false;
@@ -200,7 +215,10 @@ L = Libre
                     this.ShowMessage(4, null);
                 }
             }
-        } //Permet de faire sortir un vehicule du parking en rentrant sois sa plaque sois sa place sur l'aquelle il est actuellement
+        }
+        /// <summary>
+        /// Méthode <c>CloseApp</c> Permet de fermer l'application sur accord de l'utilisateur
+        /// </summary>
         public void CloseApp()
         {
             Console.Write("Êtes vous sûr de vouloir fermet l'application ? (o,n) : ");
@@ -217,7 +235,10 @@ L = Libre
             Console.ReadKey();
 
 
-        } //Permet de fermer l'application sur accord de l'utilisateur
+        }
+        /// <summary>
+        /// Méthode <c>ExitChoice</c> Selon le choix de l'utilisateur, fait sortir la voiture ou affiche un message
+        /// </summary>
         private void ExitChoice( Voiture thisCar, Ticket t, int i)
         {
             Console.Clear();
@@ -234,7 +255,7 @@ L = Libre
                 t.exitHour = DateTime.Now;
                 Console.WriteLine($"La place de parque N°{i} à été libérée.");
                 t.CarStopWatch.Stop();
-                money += t.Price;
+                Money += t.Price;
             }
             else
             {
@@ -242,7 +263,10 @@ L = Libre
                 Console.WriteLine($"la place de parque N°{i} est toujours occupée.");
             }
             t.Lefting = false;
-        } //Selon le choix de l'utilisateur, fait sortir la voiture ou affiche un message
+        }
+        /// <summary>
+        /// Méthode <c>EnterVehicule</c> Permet de rentrer un vehicule dans le parking en donnant sa plaque d'immatriculation et la place qu'il occupera dans le parking
+        /// </summary>
         public void EnterVehicule(String licensePLate)
         {
             bool isCheckGood = false;
@@ -288,7 +312,16 @@ L = Libre
                     }
                 }
             }
-        } //Permet de rentrer un vehicule dans le parking en donnant sa plaque d'immatriculation et la place qu'il occupera dans le parking
+        }
+        /// <summary>
+        /// Méthode <c>CheckLicensePlate</c> Vérifie si la plaque d'immatriculation est dans les normes puis vérifie si elle est dans le parking.
+        /// </summary>
+        /// <returns>
+        /// <para>sois 0,1,2.</para>
+        /// <para>0 : La plaque de respecte pas les normes.</para>
+        /// <para>1 : La plaque est dans les normes mais pas dans le parking.</para>
+        /// 2 : La plaque est dans les normes et est dans le parking.
+        /// </returns>
         public int CheckLicensePlate(string licensePLate)
         {
             int nbrLettre =0;
@@ -326,7 +359,13 @@ L = Libre
                 }
             }
             return 0;
-        } //Vérifie si la plaque d'immatriculation est dans les normes puis vérifie si elle est dans le parking.
+        }
+        /// <summary>
+        /// Méthode <c>CountOccupedPlace</c> Permet de compter le nombre de place occupée dans le parking
+        /// </summary>
+        /// <returns>
+        /// Le nombre de place occupée du parking
+        /// </returns>
         private int CountOccupedPlace()
         {
             int count = 0;
@@ -338,7 +377,10 @@ L = Libre
                     }
                 }
             return count;
-        } //Permet de compter le nombre de place occupée dans le parking
+        }
+        /// <summary>
+        /// Méthode <c>ShowCar</c> Affiche toutes les voitures dans la parking avec toutes leurs informations.
+        /// </summary>
         public void ShowCar()
         {
 
@@ -360,7 +402,10 @@ L = Libre
                 }
 
             }
-        } //Affiche toutes les voitures dans la parking avec toutes leurs informations.
+        }
+        /// <summary>
+        /// Méthode <c>ShowMenu</c> Affiche le menu
+        /// </summary>
         public void ShowMenu()
         {Console.Write(@"=== MENU PRINCIPAL ===
 1. Entrée d'un véhicule
@@ -372,7 +417,10 @@ L = Libre
 Default : Quitter
 ");
             Console.Write("Votre choix : ");
-        } //Affiche le menu
+        }
+        /// <summary>
+        /// Méthode <c>ShowStats</c> Affiche toutes les statistiques du parking
+        /// </summary>
         public void ShowStats()
         {
             Console.WriteLine($@"=== ÉTAT DU PARKING ===
@@ -380,12 +428,15 @@ Places totales : {this.ParkingPlace.Count().ToString()}
 Places occupées : {CountOccupedPlace()}
 Places libres : {ParkingPlace.Length - CountOccupedPlace()}
 Taux d'occupation : {CountOccupedPlace() * 5}%
-Totale d'argent engendré : {money}.-
+Totale d'argent engendré : {Money}.-
 ");
             ShowCar();
-            
 
-        } //Affiche toutes les statistiques du parking
+
+        }
+        /// <summary>
+        /// Méthode <c>ShowTransactionHistory</c> Affiche l'historique des transactions
+        /// </summary>
         public void ShowTransactionHistory()
         {
             Console.WriteLine("Historique des transactions : \n");
@@ -413,6 +464,6 @@ Voiture : {v.LicensePlate}");
                 }
             }
             
-        } //Affiche l'historique des transactions
+        } 
     }
 }
