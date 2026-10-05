@@ -16,6 +16,8 @@ namespace P_Parking_App
         public List<Voiture> CarList { get; set; }
         public List<Ticket> TicketList { get; set; }
         public double money = 0;
+        
+        //Constructeur Parking
         public Parking(int nbrPlace) { 
             ParkingPlace = new Place[nbrPlace];
             CarList = new List<Voiture>();
@@ -65,7 +67,7 @@ L = Libre
 
             Console.WriteLine("\n\nVéhicules présents : ");
             ShowCar();
-        }
+        }//Affiche le parking avec l'état des places et les parking actuellement parkée
         private void ShowMessage(int messageId, Voiture actualCar)
         {
             switch (messageId)
@@ -78,7 +80,7 @@ L = Libre
                 case 5: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Cet place est actuellement libre"); break;
                 case 6: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Cet place ne fait pas parti du Parking."); break;
             }
-        }
+        } //Affiche un message pour diverse état de l'ajout dun vehicule et recherche
         public void SearchVehicule(string vehiculeInfo)
         {
             bool vehiculeFound = false;
@@ -135,7 +137,7 @@ L = Libre
                     this.ShowMessage(4, null);
                 }
             }
-        }
+        } //Permet de rechercher un vehicule et d'afficher ses données
         public void ExitVehicule(string vehiculeInfo)
         {
             bool vehiculeFound = false;
@@ -198,7 +200,7 @@ L = Libre
                     this.ShowMessage(4, null);
                 }
             }
-        }
+        } //Permet de faire sortir un vehicule du parking en rentrant sois sa plaque sois sa place sur l'aquelle il est actuellement
         public void CloseApp()
         {
             Console.Write("Êtes vous sûr de vouloir fermet l'application ? (o,n) : ");
@@ -215,7 +217,7 @@ L = Libre
             Console.ReadKey();
 
 
-        }
+        } //Permet de fermer l'application sur accord de l'utilisateur
         private void ExitChoice( Voiture thisCar, Ticket t, int i)
         {
             Console.Clear();
@@ -240,7 +242,7 @@ L = Libre
                 Console.WriteLine($"la place de parque N°{i} est toujours occupée.");
             }
             t.Lefting = false;
-        }
+        } //Selon le choix de l'utilisateur, fait sortir la voiture ou affiche un message
         public void EnterVehicule(String licensePLate)
         {
             bool isCheckGood = false;
@@ -286,7 +288,7 @@ L = Libre
                     }
                 }
             }
-        }
+        } //Permet de rentrer un vehicule dans le parking en donnant sa plaque d'immatriculation et la place qu'il occupera dans le parking
         public int CheckLicensePlate(string licensePLate)
         {
             int nbrLettre =0;
@@ -324,7 +326,7 @@ L = Libre
                 }
             }
             return 0;
-        }
+        } //Vérifie si la plaque d'immatriculation est dans les normes puis vérifie si elle est dans le parking.
         private int CountOccupedPlace()
         {
             int count = 0;
@@ -336,7 +338,7 @@ L = Libre
                     }
                 }
             return count;
-        }
+        } //Permet de compter le nombre de place occupée dans le parking
         public void ShowCar()
         {
 
@@ -358,7 +360,7 @@ L = Libre
                 }
 
             }
-        }
+        } //Affiche toutes les voitures dans la parking avec toutes leurs informations.
         public void ShowMenu()
         {Console.Write(@"=== MENU PRINCIPAL ===
 1. Entrée d'un véhicule
@@ -370,7 +372,7 @@ L = Libre
 Default : Quitter
 ");
             Console.Write("Votre choix : ");
-        }
+        } //Affiche le menu
         public void ShowStats()
         {
             Console.WriteLine($@"=== ÉTAT DU PARKING ===
@@ -383,7 +385,7 @@ Totale d'argent engendré : {money}.-
             ShowCar();
             
 
-        }
+        } //Affiche toutes les statistiques du parking
         public void ShowTransactionHistory()
         {
             Console.WriteLine("Historique des transactions : \n");
@@ -411,6 +413,6 @@ Voiture : {v.LicensePlate}");
                 }
             }
             
-        }
+        } //Affiche l'historique des transactions
     }
 }

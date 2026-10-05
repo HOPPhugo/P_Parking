@@ -16,7 +16,7 @@ namespace P_Parking_App
         public DateTime entryHour { get; set; }
         public DateTime exitHour { get; set; }
         public int PlaceNumber { get; set; }
-        public Stopwatch CarStopWatch { get; set; }
+        public Stopwatch CarStopWatch { get; set; } //Compte le temps passé dans la parking
         public bool Lefting = false;
 
         public Ticket(Voiture linkedCar, int placeNumber) {
@@ -36,11 +36,11 @@ namespace P_Parking_App
                 Price = 0.10;
             }
             return Price;
-        }
+        } //Calcule le prix du ticket selon le tarif horaire et le temps passé dans le parking
         public TimeSpan GetElapsedTime()
         {
             return this.CarStopWatch.Elapsed;
-        }
+        } //Permet de récupérer le temps passé dans le parking
         public override string ToString()
         {
             string priceTot = string.Format("{0:0.00}", Price);
@@ -70,6 +70,6 @@ Place du vehicule : N°{PlaceNumber}
 Tarif horaire     : {RATE}.-/h
 Prix du ticket    : {priceTot}.-";
             }
-        }
+        }  //Permet de modifier les informations du ToString de Ticket
     }
 }
