@@ -39,7 +39,27 @@ namespace P_Parking_App
 X = Occupé
 L = Libre
             ");
-            Console.WriteLine("Plan du parking : \n╔═════════╦═════════╦═════════╦═════════╦═════════╗");
+            if (this.ParkingPlace.Length < 5)
+            {
+                Console.Write("╔");
+                for (int i = 0; i < this.ParkingPlace.Length; i++)
+                {
+                    if (i != 0)
+                    {
+                        Console.Write("╦═════════");
+                    }
+                    else
+                    {
+                        Console.Write("═════════");
+                    }
+                }
+                Console.WriteLine("╗");
+                
+            }
+            else
+            {
+                Console.WriteLine("Plan du parking : \n╔═════════╦═════════╦═════════╦═════════╦═════════╗");
+            }
             for (int i = 0;i < nbrRows; i++)
             {
                 Console.Write("║");
