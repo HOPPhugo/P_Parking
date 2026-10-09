@@ -18,5 +18,9 @@ namespace P_Parking_App
             LicensePlate = LicensePlate.ToLower();
             IsActuallyInThePark = true;
         }
+        public override string ToString()
+        {
+            return LicensePlate.ToUpper();
+        }
     }
 }

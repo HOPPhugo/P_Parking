@@ -24,7 +24,7 @@ while (true)
     //Selon l'entrée utilisateur.
     switch (userEntry)
     {
-        case "1": parking1.EnterVehicule(Console.ReadLine()); Console.ReadLine();  break; //Apelle la methode pour entrer un vehicule dans le parking.
+        case "1": parking1.EnterVehicule(); Console.ReadLine();  break; //Apelle la methode pour entrer un vehicule dans le parking.
         case "2": parking1.ExitVehicule(Console.ReadLine()); Console.ReadLine(); break; //Apelle la methode pour faire sortir un vehicule du parking.
         case "3": parking1.ShowTable(); Console.ReadLine(); break; //Apelle la methode pour afficher l'état du parking et les voitures qui y sont parkée.
         case "4": parking1.SearchVehicule(Console.ReadLine()); Console.ReadLine(); break; //Apelle la methode pour rechercher un vehicule dans le parking et afficher ses informations.

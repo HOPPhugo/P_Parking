@@ -131,13 +131,12 @@ L = Libre
         {
             switch (messageId)
             {
-                case 0: Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine($"La voiture avec la plaque : << {actualCar.LicensePlate} >> à bien été ajoutée !"); break;
-                case 1: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("La voiture n'as pas pu être ajoutée pour cause de manque de place."); break;
+                case 0: Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine($"La voiture avec la plaque : << {actualCar.LicensePlate.ToUpper()} >> à bien été ajoutée !"); break;
                 case 2: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("La norme pour la plaque n'as pas été respectée ! Exemple : VD-274891"); break;
-                case 3: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine($"Une voiture ayant la plaque : <<{actualCar.LicensePlate}>> existe déjà dans le parking"); break;
+                case 3: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine($"Une voiture ayant la plaque : <<{actualCar.LicensePlate.ToUpper()}>> existe déjà dans le parking"); break;
                 case 4: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("La voiture mensionée n'est pas dans le parking."); break;
                 case 5: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Cet place est actuellement libre"); break;
-                case 6: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Cet place ne fait pas parti du Parking."); break;
+                case 6: Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Cette place ne fait pas parti du Parking."); break;
             }
         }
         /// <summary>
@@ -160,7 +159,7 @@ L = Libre
                             if (t.LinkedCar == thisCar)
                             {
                                 vehiculeFound = true;
-                                Console.WriteLine($"{t.ToString()} \nPlaque d'immatriculation : <<{thisCar.LicensePlate}>>");
+                                Console.WriteLine($"{t.ToString()} \nPlaque d'immatriculation : <<{thisCar}>>");
                             }
 
                         }
@@ -180,7 +179,7 @@ L = Libre
                             {
                                 vehiculeFound = true;
                                 Console.WriteLine(TicketList[i].ToString());
-                                Console.WriteLine($"Plaque d'immatriculation : <<{TicketList[i].LinkedCar.LicensePlate}>>");
+                                Console.WriteLine($"Plaque d'immatriculation : <<{TicketList[i].LinkedCar}>>");
                             }
                         }
                     }
@@ -317,14 +316,19 @@ L = Libre
         /// <summary>
         /// Méthode <c>EnterVehicule</c> Permet de rentrer un vehicule dans le parking en donnant sa plaque d'immatriculation et la place qu'il occupera dans le parking
         /// </summary>
-        public void EnterVehicule(String licensePLate)
+        public void EnterVehicule()
         {
+            Console.Write("Veuillez entrer la plaque d'immatriculation (Ex: VD-869471) : ");
+            String licensePLate = Console.ReadLine();
             bool isCheckGood = false;
             licensePLate = licensePLate.ToLower();
             int licenseCheck = CheckLicensePlate(licensePLate);
             if (licenseCheck == 1)
             {
                 Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"La plaque d'immatriculation <<{licensePLate.ToUpper()}>> à été acceptée !");
+                Console.ForegroundColor = ConsoleColor.White;
                 Console.Write("Quel place voulez vous que la voiture occupe ?(0-19) : ");
                 bool isDigit = int.TryParse(Console.ReadLine(), out int placeChoosed);
                 if (isDigit)
@@ -343,13 +347,13 @@ L = Libre
                     }
                 }
                 if (!isCheckGood){
+
                     isCheckGood = true;
-                    ShowMessage(1, null);
+                    ShowMessage(6, null);
                 }
                 
             }
             if (!isCheckGood){
-                    isCheckGood = true;
                 if (licenseCheck == 0){
                     ShowMessage(2, null);
                 }
@@ -448,7 +452,7 @@ L = Libre
                     }
                     string secondes = string.Format("{0:00}", difference.Seconds);
                     string minutes = string.Format("{0:00}", difference.Minutes);
-                    Console.WriteLine($"Place {i + 1} : {ParkingPlace[i].ActualCar.LicensePlate} (depuis {difference.Hours}h{minutes}:{secondes})");
+                    Console.WriteLine($"Place {i + 1} : {ParkingPlace[i].ActualCar} (depuis {difference.Hours}h{minutes}:{secondes})");
                 }
 
             }
@@ -493,7 +497,7 @@ Totale d'argent engendré : {Money}.-
             foreach (Voiture v in CarList)
             {
                 Console.WriteLine($@"
-Voiture : {v.LicensePlate}");
+Voiture : {v}");
                 foreach (Ticket t in TicketList)
                 {
                     if (t.LinkedCar == v)
