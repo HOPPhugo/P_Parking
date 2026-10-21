@@ -7,6 +7,10 @@
       "RelativeMoniker": "D:0:0:{7CBB2A82-05D4-4E20-B2A0-EEAF450BE871}|P_Parking_App.csproj|solutionrelative:parking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{7CBB2A82-05D4-4E20-B2A0-EEAF450BE871}|P_Parking_App.csproj|f:\\p_parking\\p_parking_app\\place.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7CBB2A82-05D4-4E20-B2A0-EEAF450BE871}|P_Parking_App.csproj|solutionrelative:place.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7CBB2A82-05D4-4E20-B2A0-EEAF450BE871}|P_Parking_App.csproj|f:\\p_parking\\p_parking_app\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7CBB2A82-05D4-4E20-B2A0-EEAF450BE871}|P_Parking_App.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -18,8 +22,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Place.cs",
+              "DocumentMoniker": "F:\\P_parking\\P_Parking_App\\Place.cs",
+              "RelativeDocumentMoniker": "Place.cs",
+              "ToolTip": "F:\\P_parking\\P_Parking_App\\Place.cs",
+              "RelativeToolTip": "Place.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-21T09:56:53.259Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\P_parking\\P_Parking_App\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "F:\\P_parking\\P_Parking_App\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-05T15:17:26.491Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -28,22 +58,9 @@
               "RelativeDocumentMoniker": "Parking.cs",
               "ToolTip": "F:\\P_parking\\P_Parking_App\\Parking.cs",
               "RelativeToolTip": "Parking.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAmwFMAAABIAAAAAAAAAA==",
+              "ViewState": "AgIAAFsBAAAAAAAAAAAAwG8BAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-05T15:18:01.726Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Program.cs",
-              "DocumentMoniker": "F:\\P_parking\\P_Parking_App\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "F:\\P_parking\\P_Parking_App\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-05T15:17:26.491Z",
               "EditorCaption": ""
             }
           ]

@@ -142,8 +142,11 @@ L = Libre
         /// <summary>
         /// Méthode <c>SearchVehicule</c> Permet de rechercher un vehicule et d'afficher ses données
         /// </summary>
-        public void SearchVehicule(string vehiculeInfo)
+        public void SearchVehicule()
         {
+            Console.WriteLine("Veuillez entrez une plaque d'immatriculation (Ex: VD-869471) ou le numéro d'une place : ");
+
+            string vehiculeInfo = Console.ReadLine();
             bool vehiculeFound = false;
             bool place = false;
             Console.Clear();
@@ -202,8 +205,10 @@ L = Libre
         /// <summary>
         /// Méthode <c>ExitVehicule</c> Permet de faire sortir un vehicule du parking en rentrant sois sa plaque sois sa place sur l'aquelle il est actuellement
         /// </summary>
-        public void ExitVehicule(string vehiculeInfo)
+        public void ExitVehicule()
         {
+            Console.WriteLine("Veuillez entrez une plaque d'immatriculation (Ex: VD-869471) ou le numéro d'une place : ");
+            string vehiculeInfo = Console.ReadLine();
             bool vehiculeFound = false;
             bool place = false;
             if (vehiculeInfo.Length > 2)
@@ -218,6 +223,7 @@ L = Libre
                             if (t.LinkedCar == thisCar)
                             {
                                 vehiculeFound = true;
+                                
                                 ExitChoice( thisCar, t, i);
                             }
 
@@ -236,8 +242,9 @@ L = Libre
                         {
                             if (TicketList[i].PlaceNumber == placeNumber)
                             {
+
                                 vehiculeFound = true;
-                                ExitChoice(TicketList[i].LinkedCar, TicketList[i], i);
+                                ExitChoice(TicketList[i].LinkedCar, TicketList[i], placeNumber);
                             }
                         }
                     }
@@ -300,7 +307,7 @@ L = Libre
             if (Console.ReadLine() == "o")
             {
                 thisCar.IsActuallyInThePark = false;
-                ParkingPlace[i] = null;
+                ParkingPlace[i] = null; 
                 t.exitHour = DateTime.Now;
                 Console.WriteLine($"La place de parque N°{i} à été libérée.");
                 t.CarStopWatch.Stop();
